@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { faqItems } from "@/lib/content";
 
 export function FAQ() {
@@ -11,22 +12,23 @@ export function FAQ() {
   const filtered = activeCategory === "Todos" ? faqItems : faqItems.filter((f) => f.category === activeCategory);
 
   return (
-    <section className="mt-10">
-      <h2 className="text-2xl font-bold mb-2">❓ FAQ — Perguntas Frequentes</h2>
-      <p className="text-[var(--color-muted)] text-sm mb-6">
-        Respostas rápidas para as dúvidas mais comuns sobre TEA no trabalho.
-      </p>
+    <section>
+      <div className="mb-6">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">Perguntas Frequentes</h2>
+        <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+          Respostas diretas para as dúvidas mais comuns.
+        </p>
+      </div>
 
-      {/* Category filter */}
-      <div className="flex flex-wrap gap-2 mb-6">
+      <div className="flex flex-wrap gap-2 mb-5">
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`px-3 py-1 rounded-full text-sm border transition ${
+            className={`px-3 py-1.5 rounded-full text-sm font-medium border transition ${
               activeCategory === cat
-                ? "bg-[var(--color-primary)] text-white border-[var(--color-primary)]"
-                : "border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700"
+                ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-transparent"
+                : "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-slate-400"
             }`}
           >
             {cat}
@@ -34,24 +36,24 @@ export function FAQ() {
         ))}
       </div>
 
-      {/* Accordion */}
       <div className="space-y-2">
         {filtered.map((item, i) => (
           <div
             key={i}
-            className="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden"
+            className="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden bg-white dark:bg-slate-800"
           >
             <button
               onClick={() => setOpen(open === i ? null : i)}
-              className="w-full text-left px-5 py-4 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-700/50 transition"
+              className="w-full text-left px-5 py-4 flex items-center justify-between gap-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition"
+              aria-expanded={open === i}
             >
-              <span className="font-medium text-sm">{item.question}</span>
-              <span className="ml-4 text-[var(--color-muted)] text-lg leading-none">
-                {open === i ? "−" : "+"}
+              <span className="text-sm font-medium text-slate-800 dark:text-slate-200">{item.question}</span>
+              <span className="shrink-0 text-slate-400">
+                {open === i ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
               </span>
             </button>
             {open === i && (
-              <div className="px-5 pb-4 text-sm text-[var(--color-muted)] leading-relaxed bg-slate-50 dark:bg-slate-800/50">
+              <div className="px-5 pb-4 pt-1 text-sm text-slate-600 dark:text-slate-300 leading-relaxed bg-slate-50 dark:bg-slate-700/30">
                 {item.answer}
               </div>
             )}
