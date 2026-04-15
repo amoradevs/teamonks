@@ -5,101 +5,208 @@ import { ContactWidget } from "@/components/teamonks/ContactWidget";
 import { SearchBar } from "@/components/teamonks/SearchBar";
 import { FAQ } from "@/components/teamonks/FAQ";
 import { PILLAR_META } from "@/lib/content";
+import { PILLAR_ICONS } from "@/lib/icons";
 import type { PillarId } from "@/lib/content";
 
 const PILLARS: PillarId[] = ["lideranca", "colaboradores", "conhecimento", "legislacao"];
 
-const COLOR_MAP = {
-  indigo: {
-    card: "hover:border-indigo-200 dark:hover:border-indigo-800 hover:shadow-indigo-50 dark:hover:shadow-indigo-950/20",
-    icon: "bg-indigo-50 dark:bg-indigo-950/50",
-    arrow: "text-indigo-500",
+// Cores por pilar — fiel ao espectro autista
+const PILLAR_COLORS: Record<PillarId, {
+  bg: string; iconBg: string; iconColor: string;
+  border: string; tag: string; arrow: string;
+}> = {
+  lideranca: {
+    bg:        "hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-blue-50 dark:hover:shadow-blue-950/30",
+    iconBg:    "bg-blue-50 dark:bg-blue-950/60",
+    iconColor: "text-blue-600 dark:text-blue-400",
+    border:    "border-slate-200 dark:border-slate-800",
+    tag:       "bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300",
+    arrow:     "text-blue-500",
   },
-  violet: {
-    card: "hover:border-violet-200 dark:hover:border-violet-800 hover:shadow-violet-50 dark:hover:shadow-violet-950/20",
-    icon: "bg-violet-50 dark:bg-violet-950/50",
-    arrow: "text-violet-500",
+  colaboradores: {
+    bg:        "hover:border-green-300 dark:hover:border-green-700 hover:shadow-green-50 dark:hover:shadow-green-950/30",
+    iconBg:    "bg-green-50 dark:bg-green-950/60",
+    iconColor: "text-green-600 dark:text-green-400",
+    border:    "border-slate-200 dark:border-slate-800",
+    tag:       "bg-green-100 dark:bg-green-950 text-green-700 dark:text-green-300",
+    arrow:     "text-green-500",
   },
-  emerald: {
-    card: "hover:border-emerald-200 dark:hover:border-emerald-800 hover:shadow-emerald-50 dark:hover:shadow-emerald-950/20",
-    icon: "bg-emerald-50 dark:bg-emerald-950/50",
-    arrow: "text-emerald-500",
+  conhecimento: {
+    bg:        "hover:border-purple-300 dark:hover:border-purple-700 hover:shadow-purple-50 dark:hover:shadow-purple-950/30",
+    iconBg:    "bg-purple-50 dark:bg-purple-950/60",
+    iconColor: "text-purple-600 dark:text-purple-400",
+    border:    "border-slate-200 dark:border-slate-800",
+    tag:       "bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300",
+    arrow:     "text-purple-500",
   },
-  amber: {
-    card: "hover:border-amber-200 dark:hover:border-amber-800 hover:shadow-amber-50 dark:hover:shadow-amber-950/20",
-    icon: "bg-amber-50 dark:bg-amber-950/50",
-    arrow: "text-amber-500",
+  legislacao: {
+    bg:        "hover:border-red-300 dark:hover:border-red-700 hover:shadow-red-50 dark:hover:shadow-red-950/30",
+    iconBg:    "bg-red-50 dark:bg-red-950/60",
+    iconColor: "text-red-600 dark:text-red-400",
+    border:    "border-slate-200 dark:border-slate-800",
+    tag:       "bg-red-100 dark:bg-red-950 text-red-700 dark:text-red-300",
+    arrow:     "text-red-500",
   },
 };
 
 const DOWNLOADS = [
-  {
-    title: "Guia do Gestor Inclusivo",
-    description: "10 práticas essenciais para liderar equipes neurodivergentes.",
-    icon: "📄",
-    filename: "guia-gestor-inclusivo.pdf",
-  },
-  {
-    title: "Glossário TEA no Trabalho",
-    description: "Termos fundamentais para uso no dia a dia corporativo.",
-    icon: "📋",
-    filename: "glossario-tea-trabalho.pdf",
-  },
-  {
-    title: "Passo a Passo PCD",
-    description: "Roteiro completo para enquadramento como PCD.",
-    icon: "📑",
-    filename: "passo-a-passo-pcd.pdf",
-  },
+  { title: "Guia do Gestor Inclusivo", description: "10 práticas para liderar equipes neurodivergentes.", filename: "guia-gestor-inclusivo.pdf" },
+  { title: "Glossário TEA no Trabalho", description: "Termos fundamentais sobre neurodiversidade.", filename: "glossario-tea-trabalho.pdf" },
+  { title: "Passo a Passo PCD", description: "Roteiro completo para enquadramento como PCD.", filename: "passo-a-passo-pcd.pdf" },
 ];
+
+// ── SVG Símbolo do Infinito — Identidade Visual TEAMONKS ──────────────────────
+function InfinitySymbol() {
+  return (
+    <svg
+      viewBox="0 0 280 130"
+      fill="none"
+      aria-hidden="true"
+      className="w-full max-w-[260px] sm:max-w-[320px]"
+    >
+      <defs>
+        <linearGradient id="spectrumGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stopColor="#dc2626" />
+          <stop offset="20%"  stopColor="#ea580c" />
+          <stop offset="40%"  stopColor="#d97706" />
+          <stop offset="60%"  stopColor="#16a34a" />
+          <stop offset="80%"  stopColor="#2563eb" />
+          <stop offset="100%" stopColor="#7c3aed" />
+        </linearGradient>
+        {/* Sombra suave */}
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+          <feMerge>
+            <feMergeNode in="coloredBlur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
+      {/* Loop esquerdo */}
+      <path
+        d="M 140 65
+           C 140 25, 50 5, 30 65
+           C 10 125, 100 145, 140 65"
+        stroke="url(#spectrumGrad)"
+        strokeWidth="14"
+        strokeLinecap="round"
+        filter="url(#glow)"
+      />
+      {/* Loop direito */}
+      <path
+        d="M 140 65
+           C 140 25, 230 5, 250 65
+           C 270 125, 180 145, 140 65"
+        stroke="url(#spectrumGrad)"
+        strokeWidth="14"
+        strokeLinecap="round"
+        filter="url(#glow)"
+      />
+    </svg>
+  );
+}
 
 export default function TeamonksHome() {
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100">
+    <div className="min-h-screen bg-white dark:bg-slate-950">
+
+      {/* ── Barra arco-íris topo ── */}
+      <div className="spectrum-bar" />
+
       {/* ── Navbar ── */}
-      <nav className="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur border-b border-slate-100 dark:border-slate-800">
-        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
-          <span className="font-bold text-base tracking-tight">TEAMONKS</span>
+      <nav className="sticky top-0 z-40 bg-white/90 dark:bg-slate-950/90 backdrop-blur border-b border-slate-100 dark:border-slate-900">
+        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2.5">
+            {/* Logo mini ∞ */}
+            <span
+              className="text-xl font-black leading-none"
+              style={{
+                background: "linear-gradient(90deg,#dc2626,#2563eb,#7c3aed)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              ∞
+            </span>
+            <span className="font-bold text-sm tracking-tight text-slate-900 dark:text-white">
+              TEAMONKS
+            </span>
+          </div>
           <AccessibilityControls />
         </div>
       </nav>
 
       {/* ── Hero ── */}
-      <section className="max-w-5xl mx-auto px-6 pt-14 pb-10">
-        <div className="max-w-2xl">
-          <div className="inline-flex items-center gap-2 text-xs font-medium text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/50 px-3 py-1 rounded-full mb-5">
-            🧠 TEA no ambiente corporativo
-          </div>
-          <h1 className="text-4xl sm:text-5xl font-bold leading-tight tracking-tight">
-            Incluir começa por{" "}
-            <span className="text-indigo-600 dark:text-indigo-400">entender.</span>
-          </h1>
-          <p className="mt-4 text-lg text-slate-500 dark:text-slate-400 leading-relaxed max-w-xl">
-            Conhecimento profundo e prático sobre TEA para líderes, colaboradores e RH. Cada pessoa no espectro é única — aqui você aprende a respeitar isso.
-          </p>
-        </div>
+      <section className="max-w-5xl mx-auto px-6 pt-16 pb-12">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-10">
 
-        {/* Busca */}
-        <div className="mt-8 max-w-xl">
-          <SearchBar />
+          {/* Texto */}
+          <div className="flex-1 max-w-lg">
+            <p className="text-xs font-semibold tracking-widest uppercase text-slate-400 dark:text-slate-500 mb-4">
+              TEA no ambiente corporativo
+            </p>
+            <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-white">
+              Um jeito{" "}
+              <span
+                style={{
+                  background: "linear-gradient(90deg,#dc2626 0%,#ea580c 25%,#d97706 50%,#16a34a 70%,#2563eb 85%,#7c3aed 100%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                único,
+              </span>
+              <br />
+              infinitas formas.
+            </h1>
+            <p className="mt-5 text-base text-slate-500 dark:text-slate-400 leading-relaxed">
+              Conhecimento profundo e prático sobre TEA para líderes, colaboradores e RH.
+              Porque incluir começa por entender.
+            </p>
+
+            {/* Busca */}
+            <div className="mt-7">
+              <SearchBar />
+            </div>
+          </div>
+
+          {/* Símbolo ∞ */}
+          <div className="shrink-0 flex items-center justify-center w-48 sm:w-64">
+            <InfinitySymbol />
+          </div>
         </div>
       </section>
 
+      {/* ── Separador arco-íris ── */}
+      <div className="max-w-5xl mx-auto px-6 mb-10">
+        <div className="spectrum-bar" />
+      </div>
+
       {/* ── Pilares ── */}
-      <section className="max-w-5xl mx-auto px-6 pb-14">
+      <section className="max-w-5xl mx-auto px-6 pb-16">
+        <p className="text-xs font-semibold tracking-widest uppercase text-slate-400 dark:text-slate-500 mb-5">
+          Explore por área
+        </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {PILLARS.map((id) => {
-            const meta = PILLAR_META[id];
-            const colors = COLOR_MAP[meta.color as keyof typeof COLOR_MAP];
+            const meta   = PILLAR_META[id];
+            const colors = PILLAR_COLORS[id];
+            const Icon   = PILLAR_ICONS[id];
             return (
               <Link
                 key={id}
                 href={`/teamonks/${id}`}
-                className={`group flex items-start gap-4 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800/50 hover:shadow-lg transition-all duration-200 ${colors.card}`}
+                className={`group flex items-start gap-4 p-5 rounded-2xl border bg-white dark:bg-slate-900 shadow-sm hover:shadow-md transition-all duration-200 ${colors.border} ${colors.bg}`}
               >
-                <div className={`w-12 h-12 shrink-0 rounded-xl flex items-center justify-center text-2xl ${colors.icon}`}>
-                  {meta.icon}
+                {/* Ícone */}
+                <div className={`w-11 h-11 shrink-0 rounded-xl flex items-center justify-center ${colors.iconBg}`}>
+                  <Icon size={22} className={colors.iconColor} />
                 </div>
+
+                {/* Texto */}
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-slate-900 dark:text-slate-100 leading-snug">
                     {meta.label}
@@ -108,9 +215,11 @@ export default function TeamonksHome() {
                     {meta.description}
                   </p>
                 </div>
+
+                {/* Seta */}
                 <ArrowRight
-                  size={18}
-                  className={`shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity ${colors.arrow}`}
+                  size={17}
+                  className={`shrink-0 mt-1 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${colors.arrow}`}
                 />
               </Link>
             );
@@ -118,54 +227,79 @@ export default function TeamonksHome() {
         </div>
       </section>
 
-      {/* ── Divisor ── */}
-      <div className="max-w-5xl mx-auto px-6">
-        <hr className="border-slate-100 dark:border-slate-800" />
-      </div>
-
       {/* ── FAQ ── */}
-      <section className="max-w-3xl mx-auto px-6 py-14">
-        <FAQ />
+      <section className="bg-slate-50 dark:bg-slate-900 border-y border-slate-100 dark:border-slate-800">
+        <div className="max-w-3xl mx-auto px-6 py-14">
+          <FAQ />
+        </div>
       </section>
 
       {/* ── Downloads ── */}
-      <section className="bg-slate-50 dark:bg-slate-800/30 border-y border-slate-100 dark:border-slate-800">
-        <div className="max-w-5xl mx-auto px-6 py-12">
-          <div className="mb-6">
-            <h2 className="text-xl font-bold">Guias para Download</h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-              Materiais práticos para reuniões, treinamentos e processos de RH.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {DOWNLOADS.map((d) => (
+      <section className="max-w-5xl mx-auto px-6 py-14">
+        <div className="mb-7">
+          <p className="text-xs font-semibold tracking-widest uppercase text-slate-400 dark:text-slate-500 mb-1">
+            Materiais
+          </p>
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+            Guias para Download
+          </h2>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+            Materiais prontos para reuniões, treinamentos e RH.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {DOWNLOADS.map((d, i) => {
+            const colors = [
+              { bar: "bg-blue-500",   icon: "text-blue-500",   ring: "ring-blue-100 dark:ring-blue-900" },
+              { bar: "bg-purple-500", icon: "text-purple-500", ring: "ring-purple-100 dark:ring-purple-900" },
+              { bar: "bg-green-500",  icon: "text-green-500",  ring: "ring-green-100 dark:ring-green-900" },
+            ][i];
+            return (
               <div
                 key={d.filename}
-                className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 flex flex-col gap-4"
+                className={`bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow`}
               >
-                <span className="text-3xl">{d.icon}</span>
-                <div>
-                  <p className="font-semibold text-sm">{d.title}</p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{d.description}</p>
+                {/* Barra de cor topo */}
+                <div className={`h-1.5 ${colors.bar}`} />
+                <div className="p-5 flex flex-col gap-4">
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center ring-4 ${colors.ring} bg-white dark:bg-slate-950`}>
+                    <Download size={18} className={colors.icon} />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-sm text-slate-900 dark:text-slate-100">{d.title}</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{d.description}</p>
+                  </div>
+                  <a
+                    href={`/downloads/${d.filename}`}
+                    className="mt-auto text-center text-xs py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition font-medium"
+                  >
+                    Baixar PDF
+                  </a>
                 </div>
-                <a
-                  href={`/downloads/${d.filename}`}
-                  className="mt-auto inline-flex items-center justify-center gap-2 text-xs py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition font-medium"
-                  aria-label={`Baixar ${d.title}`}
-                >
-                  <Download size={13} />
-                  Baixar PDF
-                </a>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </section>
 
       {/* ── Footer ── */}
-      <footer className="max-w-5xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
-        <span>© 2026 TEAMONKS — Conhecimento e Inclusão</span>
-        <span>Conteúdo curado de APA, OMS, ASAN, Planalto.gov.br e UNESP</span>
+      <footer className="border-t border-slate-100 dark:border-slate-900">
+        <div className="spectrum-bar" />
+        <div className="max-w-5xl mx-auto px-6 py-7 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400">
+          <div className="flex items-center gap-1.5">
+            <span
+              className="font-black"
+              style={{
+                background: "linear-gradient(90deg,#dc2626,#2563eb,#7c3aed)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >∞</span>
+            <span>TEAMONKS © 2026</span>
+          </div>
+          <span>Conteúdo curado de APA, OMS, ASAN e Planalto.gov.br</span>
+        </div>
       </footer>
 
       <ContactWidget />

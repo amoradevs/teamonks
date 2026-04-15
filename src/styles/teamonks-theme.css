@@ -1,26 +1,72 @@
-/* TEAMONKS — Design Tokens */
+/* TEAMONKS — Design System inspirado no símbolo do autismo (∞ arco-íris) */
+
 :root {
-  --color-primary: #6366f1;    /* Índigo suave */
-  --color-secondary: #8b5cf6;  /* Violeta */
-  --color-accent: #10b981;     /* Verde esmeralda */
-  --color-surface: #f8fafc;
-  --color-text: #1e293b;
-  --color-muted: #64748b;
+  /* Paleta do espectro autista */
+  --spectrum-red:    #dc2626;
+  --spectrum-orange: #ea580c;
+  --spectrum-yellow: #d97706;
+  --spectrum-green:  #16a34a;
+  --spectrum-blue:   #2563eb;
+  --spectrum-purple: #7c3aed;
+
+  /* Gradiente do espectro (esq → dir) */
+  --spectrum-gradient: linear-gradient(
+    90deg,
+    #dc2626 0%,
+    #ea580c 20%,
+    #d97706 38%,
+    #16a34a 55%,
+    #2563eb 75%,
+    #7c3aed 100%
+  );
+
+  /* Cores por pilar */
+  --pillar-lideranca:    #2563eb;
+  --pillar-colaboradores:#16a34a;
+  --pillar-conhecimento: #7c3aed;
+  --pillar-legislacao:   #dc2626;
+
+  /* Superfície e texto */
+  --color-surface:  #ffffff;
+  --color-bg:       #f8fafc;
+  --color-text:     #0f172a;
+  --color-muted:    #64748b;
+  --color-border:   #e2e8f0;
+
+  /* Escala de fonte */
   --font-scale: 1;
 }
 
 [data-theme="dark"] {
-  --color-surface: #0f172a;
-  --color-text: #f1f5f9;
-  --color-muted: #94a3b8;
+  --color-surface:  #0f172a;
+  --color-bg:       #020617;
+  --color-text:     #f1f5f9;
+  --color-muted:    #94a3b8;
+  --color-border:   #1e293b;
 }
 
 [data-contrast="high"] {
-  --color-primary: #4338ca;
-  --color-text: #000000;
+  --color-text:    #000000;
   --color-surface: #ffffff;
+  --color-muted:   #1e293b;
 }
 
 html {
   font-size: calc(16px * var(--font-scale));
+}
+
+/* Utilitário — texto com gradiente do espectro */
+.text-spectrum {
+  background: var(--spectrum-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Linha decorativa arco-íris */
+.spectrum-bar {
+  height: 4px;
+  background: var(--spectrum-gradient);
+  border-radius: 9999px;
 }
