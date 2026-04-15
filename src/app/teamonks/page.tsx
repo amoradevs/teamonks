@@ -73,7 +73,15 @@ export default function TeamonksHome() {
               alt="TEA.monks"
               width={120}
               height={36}
-              className="h-8 w-auto object-contain dark:brightness-90"
+              className="h-8 w-auto object-contain dark:hidden"
+              priority
+            />
+            <Image
+              src="/logo_escuro.png"
+              alt="TEA.monks"
+              width={120}
+              height={36}
+              className="h-8 w-auto object-contain hidden dark:block"
               priority
             />
           </Link>

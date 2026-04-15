@@ -242,7 +242,14 @@ export function PillarPage({ pillar }: { pillar: PillarId }) {
               alt="TEA.monks"
               width={96}
               height={28}
-              className="h-6 w-auto object-contain dark:brightness-90 opacity-70 group-hover:opacity-100 transition"
+              className="h-6 w-auto object-contain opacity-70 group-hover:opacity-100 transition dark:hidden"
+            />
+            <Image
+              src="/logo_escuro.png"
+              alt="TEA.monks"
+              width={96}
+              height={28}
+              className="h-6 w-auto object-contain opacity-70 group-hover:opacity-100 transition hidden dark:block"
             />
           </Link>
           <AccessibilityControls />
