@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Download } from "lucide-react";
 import { AccessibilityControls } from "@/components/teamonks/AccessibilityControls";
@@ -50,62 +51,11 @@ const PILLAR_COLORS: Record<PillarId, {
 };
 
 const DOWNLOADS = [
-  { title: "Guia do Gestor Inclusivo", description: "10 práticas para liderar equipes neurodivergentes.", filename: "guia-gestor-inclusivo.pdf" },
-  { title: "Glossário TEA no Trabalho", description: "Termos fundamentais sobre neurodiversidade.", filename: "glossario-tea-trabalho.pdf" },
-  { title: "Passo a Passo PCD", description: "Roteiro completo para enquadramento como PCD.", filename: "passo-a-passo-pcd.pdf" },
+  { title: "Guia do Gestor Inclusivo", description: "10 práticas para liderar equipes neurodivergentes.", href: "/downloads/guia-gestor-inclusivo" },
+  { title: "Glossário TEA no Trabalho", description: "Termos fundamentais sobre neurodiversidade.", href: "/downloads/glossario-tea-trabalho" },
+  { title: "Passo a Passo PCD", description: "Roteiro completo para enquadramento como PCD.", href: "/downloads/passo-a-passo-pcd" },
 ];
 
-// ── SVG Símbolo do Infinito — Identidade Visual TEAMONKS ──────────────────────
-function InfinitySymbol() {
-  return (
-    <svg
-      viewBox="0 0 280 130"
-      fill="none"
-      aria-hidden="true"
-      className="w-full max-w-[260px] sm:max-w-[320px]"
-    >
-      <defs>
-        <linearGradient id="spectrumGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%"   stopColor="#dc2626" />
-          <stop offset="20%"  stopColor="#ea580c" />
-          <stop offset="40%"  stopColor="#d97706" />
-          <stop offset="60%"  stopColor="#16a34a" />
-          <stop offset="80%"  stopColor="#2563eb" />
-          <stop offset="100%" stopColor="#7c3aed" />
-        </linearGradient>
-        {/* Sombra suave */}
-        <filter id="glow">
-          <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-          <feMerge>
-            <feMergeNode in="coloredBlur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
-
-      {/* Loop esquerdo */}
-      <path
-        d="M 140 65
-           C 140 25, 50 5, 30 65
-           C 10 125, 100 145, 140 65"
-        stroke="url(#spectrumGrad)"
-        strokeWidth="14"
-        strokeLinecap="round"
-        filter="url(#glow)"
-      />
-      {/* Loop direito */}
-      <path
-        d="M 140 65
-           C 140 25, 230 5, 250 65
-           C 270 125, 180 145, 140 65"
-        stroke="url(#spectrumGrad)"
-        strokeWidth="14"
-        strokeLinecap="round"
-        filter="url(#glow)"
-      />
-    </svg>
-  );
-}
 
 export default function TeamonksHome() {
   return (
@@ -117,23 +67,16 @@ export default function TeamonksHome() {
       {/* ── Navbar ── */}
       <nav className="sticky top-0 z-40 bg-white/90 dark:bg-slate-950/90 backdrop-blur border-b border-slate-100 dark:border-slate-900">
         <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2.5">
-            {/* Logo mini ∞ */}
-            <span
-              className="text-xl font-black leading-none"
-              style={{
-                background: "linear-gradient(90deg,#dc2626,#2563eb,#7c3aed)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              ∞
-            </span>
-            <span className="font-bold text-sm tracking-tight text-slate-900 dark:text-white">
-              TEAMONKS
-            </span>
-          </div>
+          <Link href="/teamonks" className="flex items-center select-none">
+            <Image
+              src="/teamonks-logo.png"
+              alt="TEA.monks"
+              width={120}
+              height={36}
+              className="h-8 w-auto object-contain dark:brightness-90"
+              priority
+            />
+          </Link>
           <AccessibilityControls />
         </div>
       </nav>
@@ -175,7 +118,14 @@ export default function TeamonksHome() {
 
           {/* Símbolo ∞ */}
           <div className="shrink-0 flex items-center justify-center w-48 sm:w-64">
-            <InfinitySymbol />
+            <Image
+              src="/autism-symbol.png"
+              alt="Símbolo do infinito do autismo"
+              width={260}
+              height={260}
+              className="w-full h-auto drop-shadow-md"
+              priority
+            />
           </div>
         </div>
       </section>
@@ -256,7 +206,7 @@ export default function TeamonksHome() {
             ][i];
             return (
               <div
-                key={d.filename}
+                key={d.href}
                 className={`bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow`}
               >
                 {/* Barra de cor topo */}
@@ -270,10 +220,12 @@ export default function TeamonksHome() {
                     <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{d.description}</p>
                   </div>
                   <a
-                    href={`/downloads/${d.filename}`}
+                    href={d.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="mt-auto text-center text-xs py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition font-medium"
                   >
-                    Baixar PDF
+                    Abrir / Salvar PDF
                   </a>
                 </div>
               </div>

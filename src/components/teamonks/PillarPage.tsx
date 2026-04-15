@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, ChevronUp, ExternalLink, ArrowLeft } from "lucide-react";
+import { ChevronDown, ChevronUp, ExternalLink, ArrowLeft, XCircle, CheckCircle } from "lucide-react";
+import { AccessibilityControls } from "@/components/teamonks/AccessibilityControls";
 import { getPillarCards, PILLAR_META, type PillarId, type ContentCard } from "@/lib/content";
 import { CARD_ICONS, PILLAR_ICONS } from "@/lib/icons";
 
@@ -89,6 +91,22 @@ function CardSection({
             <li key={i} className="flex gap-2.5 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
               <span className={`mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full ${colors.solid}`} />
               <span>{b}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+      {section.myths && section.myths.length > 0 && (
+        <ul className="mt-2 space-y-3">
+          {section.myths.map((m, i) => (
+            <li key={i} className="rounded-xl border border-slate-100 dark:border-slate-800 overflow-hidden text-sm">
+              <div className="flex gap-2.5 items-start px-3 py-2 bg-red-50 dark:bg-red-950/20">
+                <XCircle size={15} className="shrink-0 mt-0.5 text-red-500" />
+                <span className="text-red-700 dark:text-red-300 leading-relaxed">{m.myth}</span>
+              </div>
+              <div className="flex gap-2.5 items-start px-3 py-2 bg-green-50 dark:bg-green-950/20">
+                <CheckCircle size={15} className="shrink-0 mt-0.5 text-green-600" />
+                <span className="text-green-800 dark:text-green-300 leading-relaxed">{m.truth}</span>
+              </div>
             </li>
           ))}
         </ul>
@@ -214,17 +232,26 @@ export function PillarPage({ pillar }: { pillar: PillarId }) {
       {/* Barra arco-íris */}
       <div className="spectrum-bar" />
 
+      {/* Navbar */}
+      <nav className="sticky top-0 z-40 bg-white/90 dark:bg-slate-950/90 backdrop-blur border-b border-slate-100 dark:border-slate-900">
+        <div className="max-w-3xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
+          <Link href="/teamonks" className="inline-flex items-center gap-2 group">
+            <ArrowLeft size={13} className="text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition" />
+            <Image
+              src="/teamonks-logo.png"
+              alt="TEA.monks"
+              width={96}
+              height={28}
+              className="h-6 w-auto object-contain dark:brightness-90 opacity-70 group-hover:opacity-100 transition"
+            />
+          </Link>
+          <AccessibilityControls />
+        </div>
+      </nav>
+
       {/* Hero do pilar */}
       <div className={`${colors.light} ${colors.lightDark} border-b ${colors.border} ${colors.borderDark} py-10 px-6`}>
         <div className="max-w-3xl mx-auto">
-          <Link
-            href="/teamonks"
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 mb-6 transition"
-          >
-            <ArrowLeft size={13} />
-            Início
-          </Link>
-
           <div className="flex items-center gap-4">
             <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-sm ${colors.light} ${colors.lightDark} border ${colors.border}`}>
               {PillarIcon && (

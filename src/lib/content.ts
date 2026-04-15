@@ -8,12 +8,18 @@ export interface Source {
   url: string;
 }
 
+export interface MythItem {
+  myth: string;
+  truth: string;
+}
+
 export interface Section {
   heading?: string;
   paragraphs?: string[];
   bullets?: string[];
-  highlight?: string; // callout em destaque
-  note?: string;     // nota secundária
+  myths?: MythItem[];   // pares mito/verdade com ícones
+  highlight?: string;
+  note?: string;
 }
 
 export interface ContentCard {
@@ -114,11 +120,15 @@ export const liderancaCards: ContentCard[] = [
         paragraphs: [
           "Use a estrutura: Comportamento específico → Efeito observável → Consequência clara → Caminho de melhoria.",
         ],
-        bullets: [
-          "❌ Vago: 'Você precisa ser mais proativo nas reuniões'",
-          "✅ BECC: 'Na reunião de segunda (comportamento), você ficou em silêncio quando perguntei sobre o projeto X (efeito). Isso dificultou a tomada de decisão do time (consequência). Na próxima, envio a pauta com 24h de antecedência para você preparar pontos (caminho)'",
-          "❌ Vago: 'Preciso que você melhore o relacionamento com a equipe'",
-          "✅ BECC: 'Nos últimos 3 check-ins, você não respondeu às mensagens de João em até 24h. Isso atrasou 2 entregas. Vamos combinar: resposta em até 4h úteis para mensagens com urgência marcada?'",
+        myths: [
+          {
+            myth: "Vago: 'Você precisa ser mais proativo nas reuniões'",
+            truth: "BECC: 'Na reunião de segunda, você ficou em silêncio quando perguntei sobre o projeto X (comportamento/efeito). Isso dificultou a tomada de decisão do time (consequência). Na próxima, envio a pauta com 24h de antecedência para você preparar pontos (caminho)'",
+          },
+          {
+            myth: "Vago: 'Preciso que você melhore o relacionamento com a equipe'",
+            truth: "BECC: 'Nos últimos 3 check-ins, você não respondeu às mensagens de João em até 24h. Isso atrasou 2 entregas. Vamos combinar: resposta em até 4h úteis para mensagens com urgência marcada?'",
+          },
         ],
         highlight: "Sempre coloque feedback por escrito após a conversa. Facilita o processamento e serve como referência.",
       },
@@ -239,12 +249,12 @@ export const liderancaCards: ContentCard[] = [
       {
         heading: "O que evitar",
         bullets: [
-          "❌ Pressionar por explicação durante a crise",
-          "❌ Ignorar ou sair sem dizer nada",
-          "❌ Chamar atenção da pessoa na frente de outros",
-          "❌ Tratar como drama ou birra",
-          "❌ Ameaças ou ultimatos ('se continuar assim...')",
-          "❌ Tocar sem pedir antes",
+          "Pressionar por explicação durante a crise",
+          "Ignorar ou sair sem dizer nada",
+          "Chamar atenção da pessoa na frente de outros",
+          "Tratar como drama ou reação exagerada",
+          "Ameaças ou ultimatos ('se continuar assim...')",
+          "Tocar sem pedir permissão antes",
         ],
       },
       {
@@ -630,15 +640,15 @@ export const conhecimentoCards: ContentCard[] = [
       "Preconceitos sobre TEA causam danos reais: diagnósticos perdidos, oportunidades negadas e exclusão. Desmontar esses mitos é um ato de inclusão.",
     sections: [
       {
-        bullets: [
-          "❌ MITO: 'Autismo é coisa de criança' — ✅ VERDADE: TEA é uma condição neurológica permanente. Crianças com TEA crescem e se tornam adultos com TEA",
-          "❌ MITO: 'Autistas não têm empatia' — ✅ VERDADE: Muitos autistas têm empatia intensa — o desafio está na expressão e interpretação de sinais sociais implícitos, não na ausência de sentimento. Existe até o conceito de 'dupla empatia'",
-          "❌ MITO: 'Todo autista é gênio ou tem habilidade extraordinária' — ✅ VERDADE: TEA ocorre em todos os perfis cognitivos. Não há 'superpoder' garantido",
-          "❌ MITO: 'Vacinas causam autismo' — ✅ VERDADE: Esta afirmação vem de um estudo fraudulento e retratado. Nenhuma evidência científica robusta suporta essa relação",
-          "❌ MITO: 'Autistas não querem relações sociais' — ✅ VERDADE: Muitos autistas desejam profundamente conexões — mas podem ter dificuldades com os códigos sociais implícitos",
-          "❌ MITO: 'Você não parece autista' — ✅ VERDADE: Não existe um jeito de 'parecer autista'. Esta frase invalida o diagnóstico e o sofrimento real da pessoa",
-          "❌ MITO: 'Terapia cura o autismo' — ✅ VERDADE: TEA não é doença que precisa de cura. Terapias de qualidade desenvolvem habilidades e bem-estar, respeitando a neurodivergência",
-          "❌ MITO: 'É só preguiça/frescura/falta de esforço' — ✅ VERDADE: O que parece preguiça frequentemente é sobrecarga cognitiva real, burnout autista ou inadequação do ambiente",
+        myths: [
+          { myth: "Autismo é coisa de criança", truth: "TEA é uma condição neurológica permanente. Crianças com TEA crescem e se tornam adultos com TEA." },
+          { myth: "Autistas não têm empatia", truth: "Muitos autistas têm empatia intensa — o desafio está na expressão e interpretação de sinais sociais implícitos, não na ausência de sentimento. Existe o conceito de 'dupla empatia'." },
+          { myth: "Todo autista é gênio ou tem habilidade extraordinária", truth: "TEA ocorre em todos os perfis cognitivos. Não há 'superpoder' garantido." },
+          { myth: "Vacinas causam autismo", truth: "Esta afirmação vem de um estudo fraudulento e retratado. Nenhuma evidência científica robusta suporta essa relação." },
+          { myth: "Autistas não querem relações sociais", truth: "Muitos autistas desejam profundamente conexões — mas podem ter dificuldades com os códigos sociais implícitos." },
+          { myth: "'Você não parece autista'", truth: "Não existe um jeito de 'parecer autista'. Esta frase invalida o diagnóstico e o sofrimento real da pessoa." },
+          { myth: "Terapia cura o autismo", truth: "TEA não é doença que precisa de cura. Terapias de qualidade desenvolvem habilidades e bem-estar, respeitando a neurodivergência." },
+          { myth: "É só preguiça ou falta de esforço", truth: "O que parece preguiça frequentemente é sobrecarga cognitiva real, burnout autista ou inadequação do ambiente." },
         ],
       },
       {
@@ -652,6 +662,150 @@ export const conhecimentoCards: ContentCard[] = [
       { label: "Autism Myths vs Facts", org: "Autism Speaks", url: "https://www.autismspeaks.org/autism-facts-and-figures" },
       { label: "The Double Empathy Problem", org: "Dr. Damian Milton — Sage Journals", url: "https://journals.sagepub.com/doi/10.1177/1362361312442842" },
       { label: "Vaccines Do Not Cause Autism", org: "CDC", url: "https://www.cdc.gov/vaccinesafety/concerns/autism.html" },
+    ],
+  },
+  {
+    id: "con-05",
+    pillar: "conhecimento",
+    icon: "♀",
+    title: "TEA em Mulheres — O Diagnóstico Invisível",
+    subtitle: "Por que tantas mulheres autistas chegam à vida adulta sem diagnóstico",
+    tags: ["Mulheres", "Diagnóstico", "Masking"],
+    summary:
+      "Mulheres com TEA são sistematicamente subdiagnosticadas. Não porque o autismo seja diferente nelas — mas porque os critérios diagnósticos foram construídos quase que exclusivamente a partir de estudos com meninos e homens.",
+    sections: [
+      {
+        heading: "O problema do diagnóstico tardio",
+        paragraphs: [
+          "Historicamente, o TEA foi descrito e estudado com base em populações majoritariamente masculinas. Isso criou um viés profundo: os critérios clínicos refletem o perfil de apresentação mais comum em meninos — comportamentos mais externalizados, interesses restritos evidentes e menor habilidade de camuflagem social.",
+          "Mulheres e meninas, em geral, desenvolvem com mais eficiência o chamado masking (ou camuflagem): o processo de observar, imitar e reproduzir comportamentos sociais esperados para parecer 'neurotípicas'. O resultado é uma aparência de adequação social que frequentemente engana profissionais de saúde, professores, familiares — e a própria pessoa.",
+        ],
+        highlight:
+          "Estudos indicam que mulheres autistas recebem diagnóstico em média 5 a 10 anos mais tarde do que homens. Muitas chegam à vida adulta — e ao mercado de trabalho — sem nunca ter recebido suporte adequado.",
+      },
+      {
+        heading: "Como o masking se manifesta no trabalho",
+        paragraphs: [
+          "A camuflagem social tem um custo altíssimo. A energia gasta em imitar comportamentos esperados, manter contato visual forçado, simular interesse em conversas sociais e suprimir reações autênticas leva ao chamado burnout autista — um colapso profundo que vai muito além do esgotamento comum.",
+        ],
+        bullets: [
+          "Perfeccionismo extremo como mecanismo de compensação por inseguranças não nomeadas",
+          "Ansiedade crônica antes de reuniões, apresentações ou interações sociais não roteirizadas",
+          "Esgotamento desproporcional após jornadas de trabalho consideradas 'normais' por colegas",
+          "Dificuldade em estabelecer limites por medo de parecer 'difícil' ou 'exagerada'",
+          "Hipersensibilidade a críticas — especialmente quando ligadas a habilidades sociais",
+          "Sensação constante de 'ser diferente', mesmo sem conseguir nomear por quê",
+        ],
+      },
+      {
+        heading: "Comorbidades frequentemente mascaradas",
+        paragraphs: [
+          "Antes do diagnóstico de TEA, mulheres frequentemente acumulam diagnósticos secundários que tratam sintomas sem chegar à causa. É comum o histórico incluir:",
+        ],
+        bullets: [
+          "Transtorno de Ansiedade Generalizada (TAG)",
+          "Depressão recorrente",
+          "TDAH — frequentemente diagnosticado antes do TEA",
+          "Transtorno Alimentar",
+          "Transtorno de Personalidade Borderline (diagnóstico errôneo frequente)",
+        ],
+        note: "Esses diagnósticos não são necessariamente incorretos — mas tratar apenas eles sem identificar o TEA subjacente limita profundamente a eficácia do suporte.",
+      },
+      {
+        heading: "O que muda com o diagnóstico tardio",
+        paragraphs: [
+          "Receber o diagnóstico na vida adulta, mesmo que tardio, tende a ser profundamente transformador. Muitas mulheres descrevem o diagnóstico como 'finalmente entender a própria história' — e passam a ressignificar décadas de experiências que antes pareciam falhas pessoais.",
+          "No ambiente de trabalho, o diagnóstico permite acessar acomodações razoáveis legalmente garantidas, comunicar necessidades com mais clareza e, muitas vezes, reconhecer e preservar pontos fortes que antes eram vistos como excentricidades.",
+        ],
+        highlight:
+          "Como aponta a Psicóloga Lygia Pereira, especialista em TEA feminino: 'O diagnóstico não muda quem você é. Ele muda como você entende quem você sempre foi.'",
+      },
+      {
+        heading: "Como líderes e RH podem apoiar",
+        bullets: [
+          "Não presumir que ausência de comportamentos 'clássicos' significa ausência de TEA",
+          "Acolher pedidos de acomodação sem exigir que a pessoa 'prove' sua condição continuamente",
+          "Evitar comentários como 'você não parece autista' — especialmente para mulheres",
+          "Criar canais de feedback escrito — muitas mulheres com TEA comunicam melhor por texto",
+          "Reconhecer que burnout autista em mulheres frequentemente é lido como 'crise emocional' — e precisa de suporte especializado",
+          "Incentivar o acesso a processos seletivos sem que habilidades sociais sejam critério eliminatório para cargos técnicos",
+        ],
+      },
+    ],
+    sources: [
+      { label: "Sex/Gender Differences and Autism", org: "Ferri et al. — Frontiers in Psychiatry", url: "https://www.frontiersin.org/articles/10.3389/fpsyt.2018.00219/full" },
+      { label: "Camouflaging Autistic Traits", org: "Hull et al. — Journal of Autism and Developmental Disorders", url: "https://link.springer.com/article/10.1007/s10803-017-3166-5" },
+      { label: "Late Diagnosis of ASD in Women", org: "Leedham et al. — Autism in Adulthood", url: "https://www.liebertpub.com/doi/10.1089/aut.2019.0004" },
+      { label: "Psicóloga Lygia Pereira — TEA em Mulheres", org: "Instagram @lygiapereirapsico", url: "https://www.instagram.com/lygiapereirapsico" },
+    ],
+  },
+  {
+    id: "con-06",
+    pillar: "conhecimento",
+    icon: "card",
+    title: "CIPTEA — Carteira de Identificação da Pessoa com TEA",
+    subtitle: "Lei Romeo Mion (Lei nº 13.977/2020) — o que é, o que garante e como solicitar",
+    tags: ["CIPTEA", "Direitos", "Documentos"],
+    summary:
+      "A CIPTEA é um documento gratuito, nacional e oficial que identifica a pessoa com TEA e garante atendimento prioritário em serviços públicos e privados. Criada pela Lei Romeo Mion, ela existe para reduzir barreiras concretas no dia a dia.",
+    sections: [
+      {
+        heading: "O que é a CIPTEA",
+        paragraphs: [
+          "A Carteira de Identificação da Pessoa com Transtorno do Espectro Autista (CIPTEA) foi criada pela Lei nº 13.977/2020, conhecida como Lei Romeo Mion — em homenagem ao filho do apresentador Marcos Mion, que tem TEA.",
+          "É um documento de porte voluntário, gratuito e emitido pelos estados e municípios. Não substitui o laudo médico, mas facilita a identificação rápida em situações onde o autismo não é visível — e garante direitos sem que a pessoa precise explicar ou justificar sua condição repetidamente.",
+        ],
+        highlight:
+          "A CIPTEA não exige nenhuma comprovação de 'grau de autismo'. Qualquer pessoa com diagnóstico de TEA tem direito ao documento — independentemente do perfil de suporte ou funcionalidade.",
+      },
+      {
+        heading: "O que a CIPTEA garante na prática",
+        bullets: [
+          "Atendimento prioritário em filas e serviços públicos e privados (saúde, bancos, cartórios, repartições)",
+          "Acesso prioritário em unidades de saúde, hospitais e prontos-socorros",
+          "Prioridade em programas habitacionais, educação e assistência social",
+          "Facilita o acesso a benefícios do INSS e enquadramento como PCD",
+          "Dispensa de explicações repetidas em cada atendimento — o documento fala por si",
+          "Reduz situações de constrangimento em contextos de crise ou sobrecarga sensorial",
+          "Pode ser apresentado em processos seletivos para vagas de PCD",
+        ],
+      },
+      {
+        heading: "O que vem escrito na carteira",
+        paragraphs: [
+          "A carteira contém: nome completo, foto, data de nascimento, filiação, número do CPF, número do documento, QR Code de autenticação e o texto 'Pessoa com Transtorno do Espectro Autista — Atendimento Prioritário'. Não contém informações sobre nível de suporte ou capacidade funcional.",
+        ],
+      },
+      {
+        heading: "Como solicitar — documentos geralmente exigidos",
+        bullets: [
+          "Laudo médico com diagnóstico de TEA (CID F84) assinado por médico ou psicólogo",
+          "Documento de identidade com foto (RG ou CNH)",
+          "CPF",
+          "Comprovante de residência",
+          "Foto recente (em alguns estados)",
+          "Para menores de idade: documentos do responsável legal",
+        ],
+        note: "Os requisitos exatos variam por estado. Consulte o portal do seu estado abaixo antes de reunir os documentos.",
+      },
+      {
+        heading: "Solicite no seu estado",
+        paragraphs: [
+          "A emissão é feita pelos estados e municípios. Acesse diretamente o portal oficial do seu estado nas fontes abaixo — cada link leva à página de solicitação.",
+        ],
+      },
+    ],
+    sources: [
+      { label: "Lei nº 13.977/2020 — Lei Romeo Mion (texto integral)", org: "Planalto.gov.br", url: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/lei/l13977.htm" },
+      { label: "CIPTEA — Portal São Paulo", org: "Governo do Estado de SP", url: "https://ciptea.sp.gov.br/" },
+      { label: "CIPTEA — Minas Gerais", org: "Secretaria de Desenvolvimento Social MG", url: "https://social.mg.gov.br/direitos-humanos/acoes-e-servicos/ciptea" },
+      { label: "CIPTEA — Paraná", org: "Portal de Serviços do Paraná", url: "https://www.parana.pr.gov.br/servicos/Cidadania/Direitos/Solicitar-a-Carteira-do-Autista-gwoBgeNz" },
+      { label: "CIPTEA — Rio Grande do Sul", org: "FADERS-RS", url: "https://faders.rs.gov.br/carteira-de-identificacao-da-pessoa-com-transtorno-do-espectro-autista-ciptea" },
+      { label: "CIPTEA — Bahia", org: "SJDH Bahia", url: "http://www.ciptea.sjdh.ba.gov.br/" },
+      { label: "CIPTEA — Pernambuco", org: "SJDHVPS Pernambuco", url: "https://www.sjdh.pe.gov.br/cadastramento-da-carteira-do-autismo/" },
+      { label: "CIPTEA — Goiás", org: "Governo de Goiás", url: "https://goias.gov.br/social/carteira-de-identificacao-do-autista/" },
+      { label: "CIPTEA — Fortaleza / Ceará", org: "Prefeitura de Fortaleza", url: "https://ciptea.fortaleza.ce.gov.br/" },
+      { label: "CIPTEA — Distrito Federal", org: "GDF — CadPCD", url: "https://sistemas.df.gov.br/cadpcd/login" },
     ],
   },
 ];

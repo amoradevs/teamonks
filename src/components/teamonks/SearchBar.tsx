@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Search, X } from "lucide-react";
 import { searchCards, PILLAR_META } from "@/lib/content";
+import { CARD_ICONS } from "@/lib/icons";
 import type { ContentCard } from "@/lib/content";
 import Link from "next/link";
 
@@ -64,7 +65,7 @@ export function SearchBar() {
                     onClick={() => { setOpen(false); setQuery(""); }}
                     className="flex items-start gap-3 px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-700 transition"
                   >
-                    <span className="text-xl shrink-0 mt-0.5">{card.icon}</span>
+                    {(() => { const Icon = CARD_ICONS[card.id]; return Icon ? <Icon size={18} className="shrink-0 mt-0.5 text-slate-400" /> : null; })()}
                     <div>
                       <p className="text-sm font-medium text-slate-800 dark:text-slate-200">{card.title}</p>
                       <p className="text-xs text-slate-400 mt-0.5">{PILLAR_META[card.pillar].label}</p>

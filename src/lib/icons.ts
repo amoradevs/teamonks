@@ -2,7 +2,7 @@ import {
   Brain, MessageSquare, Settings, Zap, Rocket,
   UserCircle, Shield, HeartHandshake, TrendingUp,
   Microscope, Globe, XCircle, FileText, Building2, CheckSquare, ShieldCheck,
-  Users, Heart, BookOpen, Scale,
+  Users, Heart, BookOpen, Scale, Sparkles, CreditCard,
   type LucideIcon,
 } from "lucide-react";
 
@@ -23,6 +23,8 @@ export const CARD_ICONS: Record<string, LucideIcon> = {
   "con-02": Globe,
   "con-03": Brain,
   "con-04": XCircle,
+  "con-05": Sparkles,
+  "con-06": CreditCard,
   // Legislação
   "leg-01": FileText,
   "leg-02": Building2,
