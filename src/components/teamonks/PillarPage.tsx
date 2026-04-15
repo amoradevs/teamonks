@@ -238,18 +238,18 @@ export function PillarPage({ pillar }: { pillar: PillarId }) {
           <Link href="/teamonks" className="inline-flex items-center gap-2 group">
             <ArrowLeft size={13} className="text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition" />
             <Image
-              src="/teamonks-logo.png"
+              src="/logo_funcoclaro.png"
               alt="TEA.monks"
-              width={96}
-              height={28}
-              className="h-6 w-auto object-contain opacity-70 group-hover:opacity-100 transition dark:hidden"
+              width={140}
+              height={40}
+              className="h-8 w-auto object-contain opacity-70 group-hover:opacity-100 transition dark:hidden"
             />
             <Image
-              src="/logo_escuro.png"
+              src="/logo_fundoescuro.png"
               alt="TEA.monks"
-              width={96}
-              height={28}
-              className="h-6 w-auto object-contain opacity-70 group-hover:opacity-100 transition hidden dark:block"
+              width={140}
+              height={40}
+              className="h-8 w-auto object-contain opacity-70 group-hover:opacity-100 transition hidden dark:block"
             />
           </Link>
           <AccessibilityControls />
