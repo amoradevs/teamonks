@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TEAMONKS
 
-## Getting Started
+Hub de conhecimento sobre TEA (Transtorno do Espectro Autista) no ambiente corporativo, desenvolvido para líderes, colaboradores e RH da Monks.
 
-First, run the development server:
+**Live:** [teamonks.vercel.app/teamonks](https://teamonks.vercel.app/teamonks)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Stack
+
+- **Next.js 15** — App Router, SSR/SSG
+- **TypeScript**
+- **Tailwind CSS v4** — dark mode via `@custom-variant dark`
+- **Groq SDK** — llama-3.3-70b-versatile (agente TEAGO)
+- **Lucide React** — ícones
+- **Vercel** — deploy contínuo
+
+---
+
+## Funcionalidades
+
+### Pilares de conteúdo
+Quatro pilares com cards expansíveis, filtros por tag e fontes citadas:
+- **Liderança & Gestão** — práticas inclusivas para líderes
+- **Colaboradores TEA** — direitos, carreira e acomodações
+- **Conhecimento Geral** — espectro, mitos, burnout autista, masking
+- **Enquadramento PCD & Legislação** — Lei 12.764/2012, Lei 13.146/2015, Lei 13.977/2020
+
+### TEAGO — Agente Virtual
+Widget de chat flutuante com zoom no hover. Powered by Groq (llama-3.3-70b-versatile).
+- Responde dúvidas sobre TEA no trabalho, direitos e neurodiversidade
+- Histórico de conversa por sessão
+- Sugestões de perguntas na abertura
+- Botão **Copiar** em cada resposta (copia para clipboard, compatível com qualquer doc)
+- Atalho de contato direto com RH
+
+### Busca global
+Busca em tempo real por título, tags e conteúdo de todos os cards.
+
+### Downloads
+Guias em PDF prontos para reuniões e treinamentos:
+- Guia do Gestor Inclusivo
+- Glossário TEA no Trabalho
+- Passo a Passo PCD
+
+### Acessibilidade
+Controles de fonte e modo escuro via `AccessibilityControls`.
+
+---
+
+## Estrutura
+
+```
+src/
+├── app/
+│   ├── teamonks/                  # Home e páginas de pilar
+│   │   ├── page.tsx
+│   │   └── [pillar]/page.tsx
+│   └── api/teago/route.ts         # API do agente TEAGO (Groq)
+├── components/teamonks/
+│   ├── ContactWidget.tsx          # Widget TEAGO com chat
+│   ├── PillarPage.tsx             # Página de pilar com filtros
+│   ├── SearchBar.tsx              # Busca global
+│   ├── FAQ.tsx
+│   └── AccessibilityControls.tsx
+└── lib/
+    ├── content.ts                 # Cards, pilares e busca
+    └── icons.ts                   # Mapa de ícones Lucide
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Variáveis de Ambiente
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+GROQ_API_KEY=your_groq_api_key
+```
 
-## Learn More
+Configurar no Vercel em **Settings → Environment Variables**.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Desenvolvimento local
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm install
+npm run dev
+```
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Acesse [http://localhost:3000/teamonks](http://localhost:3000/teamonks).
