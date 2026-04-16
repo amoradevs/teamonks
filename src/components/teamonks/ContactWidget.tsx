@@ -107,11 +107,7 @@ export function ContactWidget() {
             </span>
           </div>
 
-          {/* Balão de fala — absoluto, acima do card ampliado (260px = card ampliado ~242px + margem) */}
-          <div className="absolute bottom-[260px] right-0 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 text-sm font-medium px-4 py-2.5 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10">
-            Olá! Posso te ajudar?
-            <span className="absolute -bottom-2 right-4 w-3 h-3 bg-white dark:bg-slate-800 border-r border-b border-slate-200 dark:border-slate-700 rotate-45" />
-          </div>
+
         </button>
       )}
 
