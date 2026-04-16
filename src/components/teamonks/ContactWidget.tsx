@@ -19,6 +19,7 @@ const SUGGESTED = [
 
 export function ContactWidget() {
   const [open, setOpen] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "agent",
@@ -74,36 +75,43 @@ export function ContactWidget() {
     <>
       {/* ── Botão flutuante — card com zoom no hover ── */}
       {!open && (
-        <button
-          onClick={() => setOpen(true)}
-          aria-label="Abrir TEAGO — Agente Virtual"
-          className="fixed bottom-6 right-6 z-50 group focus:outline-none"
-        >
-          {/* Balão de fala */}
-          <div className="absolute -top-10 right-0 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 text-xs font-medium px-3 py-1.5 rounded-2xl rounded-br-none shadow-lg border border-slate-200 dark:border-slate-700 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+        <>
+          {/* Balão de fala — fixed separado, acima do card ampliado */}
+          <div
+            className={`fixed bottom-[290px] right-6 z-50 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 text-sm font-medium px-4 py-2.5 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 whitespace-nowrap pointer-events-none transition-opacity duration-200 ${hovered ? "opacity-100" : "opacity-0"}`}
+          >
             Olá! Posso te ajudar?
+            <span className="absolute -bottom-2 right-4 w-3 h-3 bg-white dark:bg-slate-800 border-r border-b border-slate-200 dark:border-slate-700 rotate-45" />
           </div>
 
-          {/* Card normal — visível em repouso, some no hover */}
-          <div className="relative w-[110px] rounded-2xl overflow-hidden shadow-2xl border-2 border-white dark:border-slate-600 transition-all duration-300 group-hover:opacity-0 group-hover:scale-90">
-            <Image src="/Agente_claro.png" alt="TEAGO" width={220} height={220} className="w-full h-full object-contain dark:hidden" priority />
-            <Image src="/Agente_escuro.png" alt="TEAGO" width={220} height={220} className="w-full h-full object-contain hidden dark:block" priority />
-            <span className="absolute top-2 right-2 flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500 border-2 border-white" />
-            </span>
-          </div>
+          <button
+            onClick={() => setOpen(true)}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+            aria-label="Abrir TEAGO — Agente Virtual"
+            className="fixed bottom-6 right-6 z-50 group focus:outline-none"
+          >
+            {/* Card normal */}
+            <div className="relative w-[110px] rounded-2xl overflow-hidden shadow-2xl border-2 border-white dark:border-slate-600 transition-all duration-300 group-hover:opacity-0 group-hover:scale-90">
+              <Image src="/Agente_claro.png" alt="TEAGO" width={220} height={220} className="w-full h-auto block dark:hidden" priority />
+              <Image src="/Agente_escuro.png" alt="TEAGO" width={220} height={220} className="w-full h-auto block hidden dark:block" priority />
+              <span className="absolute top-2 right-2 flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500 border-2 border-white" />
+              </span>
+            </div>
 
-          {/* Card ampliado — aparece no hover, ancorado à direita/baixo */}
-          <div className="absolute bottom-0 right-0 w-[220px] rounded-2xl overflow-hidden shadow-2xl border-2 border-white dark:border-slate-500 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 origin-bottom-right pointer-events-none">
-            <Image src="/Agente_claro.png" alt="TEAGO" width={440} height={440} className="w-full h-auto dark:hidden" priority />
-            <Image src="/Agente_escuro.png" alt="TEAGO" width={440} height={440} className="w-full h-auto hidden dark:block" priority />
-            <span className="absolute top-3 right-3 flex h-3.5 w-3.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-green-500 border-2 border-white" />
-            </span>
-          </div>
-        </button>
+            {/* Card ampliado no hover */}
+            <div className="absolute bottom-0 right-0 w-[220px] rounded-2xl overflow-hidden shadow-2xl border-2 border-white dark:border-slate-500 opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 origin-bottom-right pointer-events-none">
+              <Image src="/Agente_claro.png" alt="TEAGO" width={440} height={440} className="w-full h-auto block dark:hidden" priority />
+              <Image src="/Agente_escuro.png" alt="TEAGO" width={440} height={440} className="w-full h-auto block hidden dark:block" priority />
+              <span className="absolute top-3 right-3 flex h-3.5 w-3.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-green-500 border-2 border-white" />
+              </span>
+            </div>
+          </button>
+        </>
       )}
 
       {/* ── Painel de chat ── */}
@@ -114,9 +122,9 @@ export function ContactWidget() {
         >
           {/* Header — limpo e direto */}
           <div className="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 shrink-0">
-            <div className="w-9 h-9 rounded-xl overflow-hidden shrink-0">
-              <Image src="/Agente_claro.png" alt="TEAGO" width={72} height={72} className="w-full h-full object-cover dark:hidden" />
-              <Image src="/Agente_escuro.png" alt="TEAGO" width={72} height={72} className="w-full h-full object-cover hidden dark:block" />
+            <div className="relative w-9 h-9 rounded-xl overflow-hidden shrink-0">
+              <Image src="/Agente_claro.png" alt="TEAGO" fill className="object-contain dark:opacity-0 transition-opacity duration-200" />
+              <Image src="/Agente_escuro.png" alt="TEAGO" fill className="object-contain opacity-0 dark:opacity-100 transition-opacity duration-200" />
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-bold text-white leading-none">TEAGO</p>
