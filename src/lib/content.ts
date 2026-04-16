@@ -1013,6 +1013,61 @@ export const legislacaoCards: ContentCard[] = [
       { label: "Denúncia — Ministério Público do Trabalho", org: "MPT", url: "https://www.pgt.mpt.mp.br/ouvidoria/" },
     ],
   },
+  {
+    id: "leg-05",
+    pillar: "legislacao",
+    icon: "🪪",
+    title: "Lei Romeo Mion — CIPTEA na Prática",
+    subtitle: "Lei nº 13.977/2020: o que garante, como solicitar e por que importa",
+    tags: ["Lei Romeo Mion", "CIPTEA", "Documentos"],
+    summary:
+      "A Lei Romeo Mion criou a Carteira de Identificação da Pessoa com TEA (CIPTEA) — documento gratuito que garante atendimento prioritário e facilita o acesso a direitos sem que a pessoa precise se explicar repetidamente.",
+    sections: [
+      {
+        heading: "O que é a Lei Romeo Mion",
+        paragraphs: [
+          "A Lei nº 13.977, sancionada em 8 de janeiro de 2020, ficou conhecida como Lei Romeo Mion — em homenagem ao filho do apresentador Marcos Mion, que tem TEA.",
+          "Ela criou a CIPTEA (Carteira de Identificação da Pessoa com Transtorno do Espectro Autista), documento oficial, gratuito e de abrangência nacional, emitido por estados e municípios.",
+        ],
+      },
+      {
+        heading: "O que a CIPTEA garante",
+        bullets: [
+          "Atendimento prioritário em serviços públicos e privados (saúde, educação, bancos, comércio)",
+          "Identificação imediata da condição sem necessidade de apresentar laudo a cada situação",
+          "Acesso facilitado a benefícios e políticas públicas voltadas ao TEA",
+          "Validade nacional — emitida em qualquer estado, reconhecida em todo o Brasil",
+        ],
+        highlight: "A CIPTEA não substitui o laudo médico, mas evita que a pessoa precise se justificar repetidamente para acessar direitos que já são seus.",
+      },
+      {
+        heading: "Como solicitar",
+        bullets: [
+          "Acesse o portal digital do seu estado ou município (links nas fontes abaixo)",
+          "Tenha em mãos: laudo médico com CID-10 F84, documento de identidade, CPF e foto recente",
+          "A emissão é gratuita e o prazo varia por estado — em geral de 5 a 30 dias úteis",
+          "A carteira tem validade de 5 anos e pode ser renovada",
+        ],
+      },
+      {
+        heading: "No ambiente de trabalho",
+        paragraphs: [
+          "Apresentar a CIPTEA ao RH é uma forma objetiva de comunicar o diagnóstico sem precisar expor detalhes clínicos. Facilita a solicitação de acomodações razoáveis e o enquadramento como PCD na empresa.",
+        ],
+        bullets: [
+          "Use para formalizar solicitações de acomodações junto ao RH",
+          "Não é obrigatório apresentá-la — é um direito, não uma exigência",
+          "Combinada com laudo médico, fortalece o pedido de enquadramento PCD",
+        ],
+      },
+    ],
+    sources: [
+      { label: "Lei nº 13.977/2020 — Lei Romeo Mion (texto integral)", org: "Planalto.gov.br", url: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/lei/l13977.htm" },
+      { label: "CIPTEA — Portal São Paulo", org: "Governo do Estado de SP", url: "https://ciptea.sp.gov.br/" },
+      { label: "CIPTEA — Minas Gerais", org: "Secretaria de Desenvolvimento Social MG", url: "https://social.mg.gov.br/direitos-humanos/acoes-e-servicos/ciptea" },
+      { label: "CIPTEA — Paraná", org: "Portal de Serviços do Paraná", url: "https://www.parana.pr.gov.br/servicos/Cidadania/Direitos/Solicitar-a-Carteira-do-Autista-gwoBgeNz" },
+    ],
+  },
 ];
 
 // ═══════════════════════════════════════════════════════
