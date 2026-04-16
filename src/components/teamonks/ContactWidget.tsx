@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { X, Send, Mail, Loader2 } from "lucide-react";
+import { X, Send, Mail, Copy, Check } from "lucide-react";
 
 interface Message {
   role: "user" | "agent";
@@ -28,6 +28,13 @@ export function ContactWidget() {
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+
+  const copyMessage = async (text: string, index: number) => {
+    await navigator.clipboard.writeText(text);
+    setCopiedIndex(index);
+    setTimeout(() => setCopiedIndex(null), 2000);
+  };
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -142,7 +149,7 @@ export function ContactWidget() {
           {/* Messages */}
           <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 min-h-0">
             {messages.map((m, i) => (
-              <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
+              <div key={i} className={`flex flex-col ${m.role === "user" ? "items-end" : "items-start"}`}>
                 <div
                   className={`max-w-[82%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed whitespace-pre-wrap ${
                     m.role === "user"
@@ -152,6 +159,18 @@ export function ContactWidget() {
                 >
                   {m.text}
                 </div>
+                {m.role === "agent" && i > 0 && (
+                  <button
+                    onClick={() => copyMessage(m.text, i)}
+                    className="mt-1.5 flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition text-xs"
+                    aria-label="Copiar resposta"
+                  >
+                    {copiedIndex === i
+                      ? <><Check size={11} className="text-green-500" /><span className="text-green-500">Copiado!</span></>
+                      : <><Copy size={11} /><span>Copiar</span></>
+                    }
+                  </button>
+                )}
               </div>
             ))}
 
