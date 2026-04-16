@@ -1016,7 +1016,7 @@ export const legislacaoCards: ContentCard[] = [
   {
     id: "leg-05",
     pillar: "legislacao",
-    icon: "🪪",
+    icon: "card",
     title: "Lei Romeo Mion — CIPTEA na Prática",
     subtitle: "Lei nº 13.977/2020: o que garante, como solicitar e por que importa",
     tags: ["Lei Romeo Mion", "CIPTEA", "Documentos"],

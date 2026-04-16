@@ -30,6 +30,7 @@ export const CARD_ICONS: Record<string, LucideIcon> = {
   "leg-02": Building2,
   "leg-03": CheckSquare,
   "leg-04": ShieldCheck,
+  "leg-05": CreditCard,
 };
 
 export const PILLAR_ICONS: Record<string, LucideIcon> = {
