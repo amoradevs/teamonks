@@ -66,14 +66,14 @@ export default function TeamonksHome() {
 
       {/* ── Navbar ── */}
       <nav className="sticky top-0 z-40 bg-white/90 dark:bg-slate-950/90 backdrop-blur border-b border-slate-100 dark:border-slate-900">
-        <div className="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between gap-4">
+        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
           <Link href="/teamonks" className="flex items-center select-none">
             <Image
               src="/logo_novo.png"
               alt="TEA.monks"
-              width={240}
-              height={72}
-              className="h-14 w-auto object-contain"
+              width={300}
+              height={54}
+              className="h-10 w-auto object-contain"
               priority
             />
           </Link>
