@@ -69,19 +69,11 @@ export default function TeamonksHome() {
         <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
           <Link href="/teamonks" className="flex items-center select-none">
             <Image
-              src="/Logo1.png"
+              src="/logo_novo.png"
               alt="TEA.monks"
               width={180}
               height={54}
-              className="h-11 w-auto object-contain dark:hidden"
-              priority
-            />
-            <Image
-              src="/Logo2.png"
-              alt="TEA.monks"
-              width={180}
-              height={54}
-              className="h-11 w-auto object-contain hidden dark:block"
+              className="h-11 w-auto object-contain"
               priority
             />
           </Link>
