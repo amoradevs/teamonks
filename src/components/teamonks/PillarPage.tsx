@@ -242,7 +242,7 @@ export function PillarPage({ pillar }: { pillar: PillarId }) {
               alt="TEA.monks"
               width={160}
               height={48}
-              className="h-9 w-auto object-contain opacity-70 group-hover:opacity-100 transition-opacity"
+              className="h-16 w-auto object-contain opacity-70 group-hover:opacity-100 transition-opacity"
             />
           </Link>
           <AccessibilityControls />

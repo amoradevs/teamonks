@@ -73,7 +73,7 @@ export default function TeamonksHome() {
               alt="TEA.monks"
               width={180}
               height={54}
-              className="h-11 w-auto object-contain"
+              className="h-20 w-auto object-contain"
               priority
             />
           </Link>
