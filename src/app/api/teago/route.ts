@@ -1,7 +1,7 @@
-import Groq from "groq-sdk";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextRequest, NextResponse } from "next/server";
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
 const SYSTEM_PROMPT = `Você é TEAGO, agente virtual especializado em Transtorno do Espectro Autista (TEA) no contexto corporativo e do dia a dia.
 
@@ -27,23 +27,24 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Mensagem vazia" }, { status: 400 });
     }
 
-    const messages: Groq.Chat.ChatCompletionMessageParam[] = [
-      { role: "system", content: SYSTEM_PROMPT },
-      ...(history ?? []).map((h: { role: string; text: string }) => ({
-        role: h.role === "user" ? "user" : "assistant",
-        content: h.text,
-      } as Groq.Chat.ChatCompletionMessageParam)),
-      { role: "user", content: message },
-    ];
-
-    const completion = await groq.chat.completions.create({
-      messages,
-      model: "llama-3.3-70b-versatile",
-      temperature: 0.6,
-      max_tokens: 600,
+    const model = genAI.getGenerativeModel({
+      model: "gemini-2.0-flash",
+      systemInstruction: SYSTEM_PROMPT,
     });
 
-    const reply = completion.choices[0]?.message?.content ?? "Não consegui gerar uma resposta.";
+    const chat = model.startChat({
+      history: (history ?? []).map((h: { role: string; text: string }) => ({
+        role: h.role === "user" ? "user" : "model",
+        parts: [{ text: h.text }],
+      })),
+      generationConfig: {
+        temperature: 0.6,
+        maxOutputTokens: 600,
+      },
+    });
+
+    const result = await chat.sendMessage(message);
+    const reply = result.response.text() ?? "Não consegui gerar uma resposta.";
     return NextResponse.json({ reply });
   } catch (err) {
     console.error("TEAGO API error:", err);
