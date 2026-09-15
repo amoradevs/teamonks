@@ -42,6 +42,7 @@ Guias em PDF prontos para reuniões e treinamentos:
 - Guia do Gestor Inclusivo
 - Glossário TEA no Trabalho
 - Passo a Passo PCD
+- Redefinindo Perspectivas — cartilha sobre neurodiversidade para lideranças
 
 ### Acessibilidade
 Controles de fonte e modo escuro via `AccessibilityControls`.
@@ -56,6 +57,7 @@ src/
 │   ├── teamonks/                  # Home e páginas de pilar
 │   │   ├── page.tsx
 │   │   └── [pillar]/page.tsx
+│   ├── downloads/                 # Páginas dos materiais para download/impressão
 │   └── api/teago/route.ts         # API do agente TEAGO (Groq)
 ├── components/teamonks/
 │   ├── ContactWidget.tsx          # Widget TEAGO com chat

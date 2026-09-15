@@ -54,6 +54,7 @@ const DOWNLOADS = [
   { title: "Guia do Gestor Inclusivo", description: "10 práticas para liderar equipes neurodivergentes.", href: "/downloads/guia-gestor-inclusivo" },
   { title: "Glossário TEA no Trabalho", description: "Termos fundamentais sobre neurodiversidade.", href: "/downloads/glossario-tea-trabalho" },
   { title: "Passo a Passo PCD", description: "Roteiro completo para enquadramento como PCD.", href: "/downloads/passo-a-passo-pcd" },
+  { title: "Redefinindo Perspectivas", description: "Cartilha sobre neurodiversidade para lideranças.", href: "/downloads/cartilha-neurodiversidade" },
 ];
 
 
@@ -197,12 +198,13 @@ export default function TeamonksHome() {
             Materiais prontos para reuniões, treinamentos e RH.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {DOWNLOADS.map((d, i) => {
             const colors = [
               { bar: "bg-blue-500",   icon: "text-blue-500",   ring: "ring-blue-100 dark:ring-blue-900" },
               { bar: "bg-purple-500", icon: "text-purple-500", ring: "ring-purple-100 dark:ring-purple-900" },
               { bar: "bg-green-500",  icon: "text-green-500",  ring: "ring-green-100 dark:ring-green-900" },
+              { bar: "bg-orange-500", icon: "text-orange-500", ring: "ring-orange-100 dark:ring-orange-900" },
             ][i];
             return (
               <div
