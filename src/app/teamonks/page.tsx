@@ -54,7 +54,7 @@ const DOWNLOADS = [
   { title: "Guia do Gestor Inclusivo", description: "10 práticas para liderar equipes neurodivergentes.", href: "/downloads/guia-gestor-inclusivo" },
   { title: "Glossário TEA no Trabalho", description: "Termos fundamentais sobre neurodiversidade.", href: "/downloads/glossario-tea-trabalho" },
   { title: "Passo a Passo PCD", description: "Roteiro completo para enquadramento como PCD.", href: "/downloads/passo-a-passo-pcd" },
-  { title: "Redefinindo Perspectivas", description: "Cartilha sobre neurodiversidade para lideranças.", href: "/downloads/cartilha-neurodiversidade" },
+  { title: "Redefinindo Perspectivas", description: "Cartilha sobre neurodiversidade para lideranças.", href: "/downloads/redefinindo-perspectivas-cartilha.pdf" },
 ];
 
 
