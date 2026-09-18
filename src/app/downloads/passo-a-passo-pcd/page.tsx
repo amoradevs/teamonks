@@ -18,7 +18,7 @@ export default function PassoAPassoPCD() {
         <div className="mb-10 pb-6 border-b-4 border-green-600">
           <p className="text-xs font-bold tracking-widest uppercase text-green-600 mb-2">TEA.monks — Direitos & Legislação</p>
           <h1 className="text-3xl font-extrabold text-slate-900 leading-tight mb-3">
-            Passo a Passo PCD
+            Guia PCD
           </h1>
           <p className="text-base text-slate-500">
             Roteiro completo para a pessoa com TEA entender e acessar seus direitos como Pessoa com Deficiência no Brasil.
