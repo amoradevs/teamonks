@@ -107,7 +107,7 @@ export default function TeamonksHome() {
               infinitas formas.
             </h1>
             <p className="mt-5 text-base text-slate-500 dark:text-slate-400 leading-relaxed">
-              Conhecimento profundo e prático sobre TEA para líderes, colaboradores e RH.
+              Conhecimento profundo e prático sobre TEA para as nossas pessoas.
               Porque incluir começa por entender.
             </p>
 
