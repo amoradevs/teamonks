@@ -1091,7 +1091,7 @@ export const faqItems: FAQItem[] = [
     category: "Trabalho",
     question: "Meu empregador pode me demitir por ser autista?",
     answer:
-      "Não. Discriminação por deficiência é ilegal (Lei 9.029/1995 e Lei 13.146/2015). Além disso, colaboradores PCD cotistas têm estabilidade no emprego reconhecida por jurisprudência do TST.",
+      "Não. Discriminação por deficiência é ilegal (Lei 9.029/1995 e Lei 13.146/2015). Além disso, as pessoas PCD cotistas têm estabilidade no emprego reconhecida por jurisprudência do TST.",
   },
   {
     category: "Trabalho",
@@ -1107,7 +1107,7 @@ export const faqItems: FAQItem[] = [
   },
   {
     category: "Gestão",
-    question: "O que fazer quando um colaborador está em sobrecarga (meltdown ou shutdown)?",
+    question: "O que fazer quando uma pessoa autista está em sobrecarga (meltdown ou shutdown)?",
     answer:
       "Ofereça espaço tranquilo e privado. Reduza estímulos. Não exija resposta imediata. Diga apenas: 'Estou aqui, pode levar o tempo que precisar.' Não toque sem permissão. Adie qualquer conversa sobre o ocorrido.",
   },
